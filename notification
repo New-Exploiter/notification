@@ -1,0 +1,134 @@
+function notify(title, text)
+
+local RobloxGui = Instance.new("ScreenGui")
+local Frame = Instance.new("ImageButton")
+local Button = Instance.new("ImageButton")
+local TextLabel = Instance.new("TextLabel")
+local Button_2 = Instance.new("ImageButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local close = Instance.new("ImageButton")
+
+RobloxGui.Name = "RobloxGui"
+RobloxGui.Parent = game.CoreGui
+
+Frame.Name = "Frame"
+Frame.Parent = RobloxGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BackgroundTransparency = 1.000
+Frame.BorderSizePixel = 2
+Frame.Position = UDim2.new(0.430051804, 0, 0.526493788, 0)
+Frame.Image = "rbxassetid://2790382281"
+Frame.ImageColor3 = Color3.fromRGB(33, 33, 33)
+Frame.ScaleType = Enum.ScaleType.Slice
+Frame.SliceCenter = Rect.new(4, 4, 252, 252)
+
+local function LVSQDP_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	local ee = script.Parent
+	
+	ee:TweenSize(UDim2.new(0, 215,0, 63), "Out", "Quad", 2, true)
+end
+coroutine.wrap(LVSQDP_fake_script)()
+wait(0.5)
+
+Button.Name = "Button"
+Button.Parent = Frame
+Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Button.BackgroundTransparency = 1.000
+Button.Position = UDim2.new(0.0372093022, 0, 0.095238097, 0)
+Button.Image = "rbxassetid://2790382281"
+Button.ImageColor3 = Color3.fromRGB(40, 40, 40)
+Button.ScaleType = Enum.ScaleType.Slice
+Button.SliceCenter = Rect.new(4, 4, 252, 252)
+
+local function LVSQDD_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Button)
+
+	local ee1 = Button
+	
+	ee1:TweenSize(UDim2.new(0, 200, 0, 14), "Out", "Quad", 2, true)
+end
+coroutine.wrap(LVSQDD_fake_script)()
+wait(2)
+
+TextLabel.Parent = Button
+TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel.Size = UDim2.new(1, -5, 1, -5)
+TextLabel.Font = Enum.Font.GothamSemibold
+TextLabel.Text = title
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 14.000
+
+Button_2.Name = "Button"
+Button_2.Parent = Frame
+Button_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Button_2.BackgroundTransparency = 1.000
+Button_2.Position = UDim2.new(0.0372093022, 0, 0.365079373, 0)
+Button_2.Image = "rbxassetid://2790382281"
+Button_2.ImageColor3 = Color3.fromRGB(45, 45, 45)
+Button_2.ScaleType = Enum.ScaleType.Slice
+Button_2.SliceCenter = Rect.new(4, 4, 252, 252)
+
+local function LVSQAD_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Button_2)
+
+	local ee2 = Button_2
+	
+	ee2:TweenSize(UDim2.new(0, 200, 0, 34), "Out", "Quad", 2, true)
+end
+coroutine.wrap(LVSQAD_fake_script)()
+wait(2)
+
+TextLabel_2.Parent = Button_2
+TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0.485000014, 0, 0.567647219, 0)
+TextLabel_2.Size = UDim2.new(1, -5, 1, -5)
+TextLabel_2.Font = Enum.Font.GothamSemibold
+TextLabel_2.Text = text
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 12.000
+TextLabel_2.TextWrapped = true
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel_2.TextYAlignment = Enum.TextYAlignment.Top
+
+wait(0.5)
+
+close.Name = "close"
+close.Parent = Frame
+close.BackgroundTransparency = 1.000
+close.Position = UDim2.new(0.893023252, 0, 0.0793650746, 0)
+close.ZIndex = 2
+close.Image = "rbxassetid://3926305904"
+close.ImageRectOffset = Vector2.new(284, 4)
+close.ImageRectSize = Vector2.new(24, 24)
+
+local function LVVQAD_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', close)
+
+	local ee3 = close
+	
+	ee3:TweenSize(UDim2.new(0, 16, 0, 16), "Out", "Quad", 0.3, true)
+end
+coroutine.wrap(LVVQAD_fake_script)()
+
+close.MouseButton1Down:Connect(function()
+    local function WVVQAD_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+	
+	local ee = Frame
+	
+	ee:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Quad", 2, true)
+end
+coroutine.wrap(WVVQAD_fake_script)()
+wait(2)
+RobloxGui:Destroy()
+end)
+end
