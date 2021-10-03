@@ -121,5 +121,7 @@ while wait(1.5) do
     autoswingtable = {
 
     }
+elseif m == nil then
+    print("Waiting For Respawn")
     end
 end
