@@ -8514,7 +8514,7 @@ addcmd('goto',{'to'},function(args, speaker)
 				wait(.1)
 			end
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,111111,111111)
-            game:GetService("RunService").Heartbeat:Wait()
+            wait(0.2)
 			getRoot(speaker.Character).CFrame = getRoot(Players[v].Character).CFrame + Vector3.new(3,1,0)
 		end
 	end
