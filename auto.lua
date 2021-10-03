@@ -112,8 +112,7 @@ end
 
 _G.toggle = true
 
-while wait(5) do
-    if _G.toggle == true then
-        autoswing()
-    end
+for i=1,math.huge do
+    autoswing()
+    wait(2.5)
 end
