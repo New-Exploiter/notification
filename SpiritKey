@@ -1,0 +1,64 @@
+repeat wait() until game:IsLoaded()
+
+game:GetService("ReplicatedStorage").Events.SpawnFirst:FireServer()
+
+wait(1)
+
+
+local ohNumber1 = 2
+
+game:GetService("ReplicatedStorage").Events.EquipTool:FireServer(ohNumber1)
+
+
+local Crystaltable = {
+	[1] = workspace.Resources["Crystal Guardian"]["Crystal Guardian"]
+}
+
+game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",math.huge)
+
+
+for i,v in pairs(workspace.Resources:GetChildren()) do
+    if v.Name == "Crystal Guardian" then
+        if v["Crystal Guardian"] ~= nil then
+            repeat wait() until game.Players.LocalPlayer.Character.HumanoidRootPart
+            local m = v["Crystal Guardian"]
+            local runservice = game:GetService("RunService")
+local plr = game:GetService("Players").LocalPlayer
+local char = game.Players.LocalPlayer.Character
+root = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",math.huge)
+
+local p = {
+    [1] = "Crystal Chunk",
+    [2] = "Spirit Key"
+}
+
+game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",math.huge)
+
+spawn(function()
+    getgenv().autopickup3 = runservice.RenderStepped:Connect(function()
+        for _,v in pairs(workspace.Items:GetChildren()) do
+            if v.Name == p[1] or v.Name == p[2] or v.Name == p[3] or v.Name == p[4] or v.Name == p[5] or v.Name == p[6] or v.Name == p[7] or v.Name == p[8] or v.Name == p[9] or v.Name == p[10] then
+                local dist = (v.Position - char.HumanoidRootPart.Position).magnitude
+                local dist1 = 25.01
+                if dist < dist1 then
+                game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
+                end
+            end
+        end
+    end)
+end)
+            game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart",math.huge)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,1001100,111110)
+            wait(0.3)
+            repeat
+                game:GetService("RunService").Heartbeat:Wait()
+                root.CFrame = m.CFrame + Vector3.new(0,7,7)
+                game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(Crystaltable)
+
+            until workspace.Resources:FindFirstChild("Crystal Guardian") == nil
+            wait(0.5)
+            game.Players.LocalPlayer:Kick("Rejoin the game")
+        end
+    end
+    end
+
