@@ -110,8 +110,8 @@ end
 _G.toggle = true
 
 while wait(1.5) do
-    if _G.toggle == true then
-local m = near()
+    local m = near()
+    if _G.toggle == true and m ~= nil then
     table.insert(autoswingtable,m.Foliage)
     table.insert(autoswingtable,m.Trunk)
     table.insert(autoswingtable,m.Reference)
