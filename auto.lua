@@ -98,10 +98,7 @@ end
 function autoswing()
     local times = domathforsuntree()
    local target = near()
-   table.insert(autoswingtable, target.Foliage)
-   table.insert(autoswingtable, target.Trunk)
-   table.insert(autoswingtable, target.Reference)
-   root.CFrame = root.CFrame + Vector3.new(0,20000,0)
+   root.CFrame = root.CFrame + Vector3.new(0,20000,20000)
    wait(0.2)
    root.CFrame = autoswingtable[3].CFrame + Vector3.new(0,25,0)
    for i=1,times do
@@ -112,7 +109,17 @@ end
 
 _G.toggle = true
 
-for i=1,math.huge do
+while wait(1.5) do
+    if _G.toggle == true then
+local m = near()
+    table.insert(autoswingtable,m.Foliage)
+    table.insert(autoswingtable,m.Trunk)
+    table.insert(autoswingtable,m.Reference)
+
     autoswing()
-    wait(2.5)
+
+    autoswingtable = {
+
+    }
+    end
 end
