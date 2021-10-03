@@ -1,3 +1,4 @@
+  
 local speaker = game.Players.LocalPlayer
 char = speaker.Character
 root = char.HumanoidRootPart
@@ -12,9 +13,11 @@ getgenv().tptable = {
 --[[
 [1] = TP UP
 [2] = TP TO ANICENT
-
 ]]--
 
 char.HumanoidRootPart.CFrame = tptable[1]
-wait()
+wait(0.5)
 char.HumanoidRootPart.CFrame = tptable[2]
+
+
+--[[AUTO FARM STARTING DON'T EDIT LOL]]--
