@@ -1,3 +1,26 @@
+local runservice = game:GetService("RunService")
+local plr = game:GetService("Players").LocalPlayer
+local char = plr.Character
+
+local p = {
+    [1] = "Essence",
+}
+
+
+spawn(function()
+    getgenv().autopickup3 = runservice.RenderStepped:Connect(function()
+        for _,v in pairs(workspace.Items:GetChildren()) do
+            if v.Name == p[1] or v.Name == p[2] or v.Name == p[3] or v.Name == p[4] or v.Name == p[5] or v.Name == p[6] or v.Name == p[7] or v.Name == p[8] or v.Name == p[9] or v.Name == p[10] then
+                local dist = (v.Position - char.HumanoidRootPart.Position).magnitude
+                local dist1 = 25.01
+                if dist < dist1 then
+                game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
+                end
+            end
+        end
+    end)
+end)
+
 --{{AUTO SWING TO TREE}}
 
 local speaker = game.Players.LocalPlayer
