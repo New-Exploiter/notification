@@ -110,4 +110,9 @@ function autoswing()
     end
 end
 
-autoswing()
+while wait(5) do
+    local test = near()
+    if _G.toggle == true and test ~= nil then
+        autoswing()
+    end
+end
