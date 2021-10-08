@@ -11024,7 +11024,7 @@ addcmd('attach',{},function(args, speaker)
 	end
 end)
 
-function kill(speaker,target)
+function hit(speaker,target)
     if target ~= nil then
         local hrp1 = getRoot(speaker.Character)
     local swing = {}
@@ -11041,10 +11041,10 @@ function kill(speaker,target)
 end
     end
 
-addcmd('hit',{'fekill'},function(args, speaker)
+addcmd('hit',{'hit'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
-		kill(speaker,Players[v])
+		hit(speaker,Players[v])
 	end
 end)
 
