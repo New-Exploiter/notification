@@ -11034,14 +11034,14 @@ function kill(speaker,target)
     getRoot(speaker.Character).CFrame = hrp1.CFrame + Vector3.new(0,1000141,1000000)
     wait(.1)
     getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-    wait(0.15)
+    wait(0.2)
     game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
     wait(0.2)
     getRoot(speaker.Character).CFrame = place
 end
     end
 
-addcmd('kill',{'fekill'},function(args, speaker)
+addcmd('hit',{'fekill'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
 		kill(speaker,Players[v])
