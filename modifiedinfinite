@@ -11025,21 +11025,31 @@ addcmd('attach',{},function(args, speaker)
 end)
 
 function hit(speaker,target)
+    local place = getRoot(speaker.Character).CFrame
     if target ~= nil then
         local hrp1 = getRoot(speaker.Character)
     local swing = {}
     table.insert(swing,getRoot(target.Character))
-    local place = getRoot(speaker.Character).CFrame
     wait()
     getRoot(speaker.Character).CFrame = hrp1.CFrame + Vector3.new(0,1000141,1000000)
-    wait(.1)
+    wait(.2)
     getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-    wait(0.2)
+    wait(0.27)
     game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
+    wait(0.27)
+    if target.Character.Humanoid.Health ~= 0 and getgenv().teleporttodead == false then
+    getRoot(speaker.Character).CFrame = hrp1.CFrame + Vector3.new(0,1000141,1000000)
     wait(0.2)
     getRoot(speaker.Character).CFrame = place
-end
+    getRoot(speaker.Character).CFrame = place
+    getRoot(speaker.Character).CFrame = place
+    getRoot(speaker.Character).CFrame = place
+    getRoot(speaker.Character).CFrame = place
+    elseif getgenv().teleporttodead == true and target.Character.Humanoid.Health == 0 then
+        print(nil)
     end
+end
+end
 
 addcmd('hit',{'hit'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
