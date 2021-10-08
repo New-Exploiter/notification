@@ -217,7 +217,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
-Title.Text = "Infinite Yield FE v"..ver
+Title.Text = "Infinite Yield FE (BOOGA BOOGA v1.0.0)"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.ZIndex = 10
 table.insert(shade1,Title)
@@ -11024,30 +11024,19 @@ addcmd('attach',{},function(args, speaker)
 	end
 end)
 
+getgenv().teleporttodead = false
+
 function hit(speaker,target)
     local place = getRoot(speaker.Character).CFrame
     if target ~= nil then
         local hrp1 = getRoot(speaker.Character)
     local swing = {}
     table.insert(swing,getRoot(target.Character))
-    wait()
-    getRoot(speaker.Character).CFrame = hrp1.CFrame + Vector3.new(0,1000141,1000000)
-    wait(.2)
     getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-    wait(0.27)
-    game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
-    wait(0.27)
-    if target.Character.Humanoid.Health ~= 0 and getgenv().teleporttodead == false then
-    getRoot(speaker.Character).CFrame = hrp1.CFrame + Vector3.new(0,1000141,1000000)
+    wait(0.2)
+game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
     wait(0.2)
     getRoot(speaker.Character).CFrame = place
-    getRoot(speaker.Character).CFrame = place
-    getRoot(speaker.Character).CFrame = place
-    getRoot(speaker.Character).CFrame = place
-    getRoot(speaker.Character).CFrame = place
-    elseif getgenv().teleporttodead == true and target.Character.Humanoid.Health == 0 then
-        print(nil)
-    end
 end
 end
 
