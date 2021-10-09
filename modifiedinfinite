@@ -217,7 +217,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
-Title.Text = "Infinite Yield FE (BOOGA BOOGA v1.0.0)"
+Title.Text = "Infinite Yield (BOOGA v1.0.0)"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.ZIndex = 10
 table.insert(shade1,Title)
@@ -4607,8 +4607,8 @@ CMDs[#CMDs + 1] = {NAME = 'unwalkto / unfollow', DESC = 'Stops following a playe
 CMDs[#CMDs + 1] = {NAME = 'stareat / stare [plr]', DESC = 'Stare / look at a player'}
 CMDs[#CMDs + 1] = {NAME = 'unstareat / unstare [plr]', DESC = 'Disables stareat'}
 CMDs[#CMDs + 1] = {NAME = 'attach [plr] (TOOL)', DESC = 'Attaches you to a player (YOU NEED A TOOL)'}
-CMDs[#CMDs + 1] = {NAME = 'hit [plr]', DESC = 'Kills a player (YOU NEED A TOOL)'}
-CMDs[#CMDs + 1] = {NAME = 'fastkill [plr] (TOOL)', DESC = 'Kills a player (less reliable) (YOU NEED A TOOL)'}
+CMDs[#CMDs + 1] = {NAME = 'hit [plr]', DESC = 'Hits a player with your weapon'}
+CMDs[#CMDs + 1] = {NAME = 'chit [plr]', DESC = 'Close range hits'}
 CMDs[#CMDs + 1] = {NAME = 'handlekill / hkill [plr] (TOOL)', DESC = 'Kills a player using tool damage (YOU NEED A TOOL)'}
 CMDs[#CMDs + 1] = {NAME = 'bring [plr] (TOOL)', DESC = 'Brings a player (YOU NEED A TOOL)'}
 CMDs[#CMDs + 1] = {NAME = 'fastbring [plr] (TOOL)', DESC = 'Brings a player (less reliable) (YOU NEED A TOOL)'}
@@ -11024,26 +11024,35 @@ addcmd('attach',{},function(args, speaker)
 	end
 end)
 
-getgenv().teleporttodead = false
-
-function hit(speaker,target)
+function hit(speaker,target,fast)
     local place = getRoot(speaker.Character).CFrame
-    if target ~= nil then
+    if target ~= nil and fast == true then
         local hrp1 = getRoot(speaker.Character)
-    local swing = {}
-    table.insert(swing,getRoot(target.Character))
-    getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-    wait(0.2)
-game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
-    wait(0.2)
-    getRoot(speaker.Character).CFrame = place
-end
+        local swing = {}
+        table.insert(swing, getRoot(target.Character))
+        wait(0.1)
+        getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
+        wait(0.15)
+        game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
+        wait(0.05)
+        getRoot(speaker.Character).CFrame = place
+    elseif target ~= nil and fast == false then
+        local hrp1 = getRoot(speaker.Character)
+        local swing = {}
+        table.insert(swing, getRoot(target.Character))
+        wait(0.1)
+        getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
+        wait(.225)
+        game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
+        wait(0.225)
+        getRoot(speaker.Character).CFrame = place
+    end
 end
 
 addcmd('hit',{'hit'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
-		hit(speaker,Players[v])
+		hit(speaker,Players[v],false)
 	end
 end)
 
@@ -11089,10 +11098,10 @@ addcmd('untpwalk', {'unteleportwalk'}, function(args, speaker)
 	tpwalking = false
 end)
 
-addcmd('fastkill',{'fastfekill'},function(args, speaker)
+addcmd('chit',{'chit'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
-		kill(speaker,Players[v],true)
+		hit(speaker,Players[v],true)
 	end
 end)
 
