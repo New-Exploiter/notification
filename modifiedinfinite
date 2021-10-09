@@ -11032,9 +11032,9 @@ function hit(speaker,target,fast)
         table.insert(swing, getRoot(target.Character))
         wait(0.1)
         getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-        wait(0.15)
+        wait(0.16)
         game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
-        wait(0.05)
+        wait(0.1)
         getRoot(speaker.Character).CFrame = place
     elseif target ~= nil and fast == false then
         local hrp1 = getRoot(speaker.Character)
