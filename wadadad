@@ -1,0 +1,184 @@
+_G.wad = false
+
+while wait(0.1) and _G.wad == false do
+repeat wait() until game:IsLoaded()
+
+repeat wait() until game:GetService("ReplicatedStorage"):WaitForChild("Events")
+
+if game.Players then
+    if game.Players.LocalPlayer then
+        if game.Players.LocalPlayer.Character then
+            if game.Players.LocalPlayer.Character.HumanoidRootPart then
+
+wait()
+_G.wad = true
+end
+end
+end
+end
+end
+
+local accounts = {
+    [1] = "",
+    [2] = "",
+    [3] = ""
+}
+--- SPAWN LOL
+game:GetService("ReplicatedStorage").Events.SpawnFirst:FireServer()
+wait(3)
+--- xd
+    
+
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+
+function getSpeaker()
+local speaker = nil
+    if speaker == nil then
+       if game.Players.LocalPlayer ~= nil then
+           speaker = game.Players.LocalPlayer
+       else
+        speaker = speaker
+       end
+    end
+    return speaker
+end
+
+function getHum(char)
+    if char ~= nil then
+    local humanoid = char:FindFirstChild("Humanoid")
+    return humanoid
+    end
+end
+
+function getPath(speaker)
+    local wr
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        if v.Name == speaker then
+            if v ~= nil then
+                wr = v
+            else
+                wr = nil
+            end
+        end
+    end
+    return wr
+end
+
+function checkPlayer()
+    local m
+    local pl = getSpeaker()
+    if pl.Name == accounts[1] then
+        m = "main"
+    elseif pl.Name == accounts[2] then
+        m = "alt"
+    elseif pl.Name == accounts[3] then
+    end
+    return m
+end
+
+--[[
+THE ACTUAL SCRIPT STARTS NOW
+DON'T CHANGE VARIABLES ABOVE
+]]--
+
+local m = checkPlayer()
+local swing = {}
+local swingtool = game:GetService("ReplicatedStorage").Events.SwingTool
+print(m)
+function alt()
+    local hrp = getSpeaker()
+    local hrp2 = hrp.Character
+    getRoot(hrp2).CFrame = getRoot(hrp2).CFrame + Vector3.new(0,295914,151943)
+    wait(0.2)
+    local ancient = game:GetService("Workspace").Resources["Ancient Tree"]
+    if ancient ~= nil then
+        getRoot(hrp2).CFrame = ancient.Foliage.CFrame + Vector3.new(0,10,0)
+        wait(.2)
+        table.insert(swing,ancient.Foliage) wait() table.insert(swing,ancient.Trunk) wait() table.insert(swing,ancient.Reference)
+        repeat 
+        swingtool:FireServer(swing)
+        wait()
+        until workspace.Resources:FindFirstChild("Ancient Tree") == nil
+        wait(1.2)
+        getRoot(hrp2).Anchored = true
+        wait(6)
+        game.Players.LocalPlayer:Kick("Mined Ancient Tree")
+    end
+end
+
+function main()
+    local hrp = getSpeaker()
+    local hrp2 = hrp.Character
+    getRoot(hrp2).CFrame = getRoot(hrp2).CFrame + Vector3.new(0,295914,151943)
+    wait(0.2)
+    local ancient = game:GetService("Workspace").Resources["Ancient Tree"]
+    if ancient ~= nil then
+        getRoot(hrp2).CFrame = ancient.Foliage.CFrame + Vector3.new(0,10,0)
+        wait(.2)
+        table.insert(swing,ancient.Foliage) wait() table.insert(swing,ancient.Trunk) wait() table.insert(swing,ancient.Reference)
+        repeat 
+        swingtool:FireServer(swing)
+        wait()
+        until workspace.Resources:FindFirstChild("Ancient Tree") == nil
+        wait(1.2)
+        getRoot(hrp2).Anchored = true
+        wait(6)
+        getSpeaker():Kick("Done.")
+    end
+end
+
+if m == "main" then
+    game:GetService("ReplicatedStorage").Events.EquipTool:FireServer(3)
+    local runservice = game:GetService("RunService")
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character
+    
+    local p = {
+        [1] = "Essence",
+    }
+    
+    
+    spawn(function()
+        getgenv().autopickup3 = runservice.RenderStepped:Connect(function()
+            for _,v in pairs(workspace.Items:GetChildren()) do
+                if v.Name == p[1] or v.Name == p[2] or v.Name == p[3] or v.Name == p[4] or v.Name == p[5] or v.Name == p[6] or v.Name == p[7] or v.Name == p[8] or v.Name == p[9] or v.Name == p[10] then
+                    local dist = (v.Position - char.HumanoidRootPart.Position).magnitude
+                    local dist1 = 25.01
+                    if dist < dist1 then
+                    game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
+                    end
+                end
+            end
+        end)
+    end)
+    main()
+elseif m == "alt" then
+    game:GetService("ReplicatedStorage").Events.EquipTool:FireServer(3)
+        local runservice = game:GetService("RunService")
+    local plr = game:GetService("Players").LocalPlayer
+    local char = plr.Character
+    
+    local pw = {
+        [1] = "Crystal Chunk",
+    }
+    
+    
+    spawn(function()
+        getgenv().autopickup3 = runservice.RenderStepped:Connect(function()
+            for _,v in pairs(workspace.Items:GetChildren()) do
+                if v.Name == pw[1] or v.Name == pw[2] or v.Name == pw[3] or v.Name == pw[4] or v.Name == pw[5] or v.Name == pw[6] or v.Name == pw[7] or v.Name == pw[8] or v.Name == pw[9] or v.Name == pw[10] then
+                    local dist = (v.Position - char.HumanoidRootPart.Position).magnitude
+                    local dist1 = 25.01
+                    if dist < dist1 then
+                    game:GetService("ReplicatedStorage").Events.Pickup:FireServer(v)
+                    end
+                end
+            end
+        end)
+    end)
+    alt()
+end
+
