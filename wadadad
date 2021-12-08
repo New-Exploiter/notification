@@ -217,7 +217,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.SourceSans
 Title.TextSize = 18
-Title.Text = "Infinite Yield (BOOGA v1.0.0)"
+Title.Text = "Infinite Yield (BOOGA v1.1.5b)"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.ZIndex = 10
 table.insert(shade1,Title)
@@ -4641,6 +4641,9 @@ CMDs[#CMDs + 1] = {NAME = 'hipheight / hheight [num]', DESC = 'Adjusts hip heigh
 CMDs[#CMDs + 1] = {NAME = 'jumppower / jpower / jp [num]', DESC = 'Change a players jump height'}
 CMDs[#CMDs + 1] = {NAME = 'loopjumppower / loopjp [num]', DESC = 'Loops your jump height'}
 CMDs[#CMDs + 1] = {NAME = 'unloopjumppower / unloopjp [num]', DESC = 'Turns off loopjumppower'}
+CMDs[#CMDs + 1] = {NAME = 'maxslopeangle / msa [num]', DESC = 'Adjusts MaxSlopeAngle'}
+CMDs[#CMDs + 1] = {NAME = 'rkill [player]', DESC = 'kills the player'}
+CMDs[#CMDs + 1] = {NAME = 'unrkill', DESC = 'Stops killing'}
 CMDs[#CMDs + 1] = {NAME = 'maxslopeangle / msa [num]', DESC = 'Adjusts MaxSlopeAngle'}
 CMDs[#CMDs + 1] = {NAME = 'gravity / grav [num] (CLIENT)', DESC = 'Change your gravity'}
 CMDs[#CMDs + 1] = {NAME = 'sit', DESC = 'Makes your character sit'}
@@ -11027,23 +11030,53 @@ addcmd('attach',{},function(args, speaker)
 	end
 end)
 
+getgenv().stop = false
+
+function rkill(speaker,target)
+    if target ~= nil then
+        getgenv().stop = false
+        while true do
+            if getgenv().stop == true and target ~= nil then
+                break
+            else
+        local hrp1 = getRoot(speaker.Character)
+        local swing = {}
+        table.insert(swing, getRoot(target.Character))
+        getRoot(speaker.Character).CFrame = (getRoot(target.Character).CFrame - target.Character.Head.CFrame.LookVector*5) + Vector3.new(0,-7.60,0)
+        game:GetService("RunService").Heartbeat:Wait() 
+        game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
+            end
+        end
+    end
+end
+
+addcmd('rkill',{},function(args, speaker)
+	local players = getPlayer(args[1], speaker)
+	for i,v in pairs(players) do
+		rkill(speaker,Players[v])
+	end
+end)
+
+addcmd('unrkill',{},function()
+	getgenv().stop = true
+	execCmd("loadpos "..WayPoints["e"].NAME)
+end)
+
 function hit(speaker,target,fast)
     local place = getRoot(speaker.Character).CFrame
     if target ~= nil and fast == true then
         local hrp1 = getRoot(speaker.Character)
         local swing = {}
         table.insert(swing, getRoot(target.Character))
-        wait(0.1)
-        getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
-        wait(0.16)
+        getRoot(speaker.Character).CFrame = (getRoot(target.Character).CFrame - getRoot(target.Character).Parent.Head.CFrame.LookVector*1)
+        wait(0.2)
         game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
-        wait(0.1)
         getRoot(speaker.Character).CFrame = place
     elseif target ~= nil and fast == false then
         local hrp1 = getRoot(speaker.Character)
         local swing = {}
         table.insert(swing, getRoot(target.Character))
-        getRoot(speaker.Character).CFrame = getRoot(target.Character).CFrame
+        getRoot(speaker.Character).CFrame = (getRoot(target.Character).CFrame - getRoot(target.Character).Parent.Head.CFrame.LookVector*1)
         wait(.225)
         game:GetService("ReplicatedStorage").Events.SwingTool:FireServer(swing)
         wait(0.225)
@@ -11065,7 +11098,7 @@ addcmd('autohit',{'autohit'},function(args, speaker)
     _G.autolol = true
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
-	    while wait(3.7) do
+	    while wait(2) do
 	       if _G.autolol == false then
 		    break
 		    else
@@ -11079,7 +11112,7 @@ addcmd('autochit',{'autochit'},function(args, speaker)
     _G.autolol2 = true
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players) do
-	    while wait(.45) do
+	    while wait(.2) do
 	       if  _G.autolol2 == false then
 		    break
 		   else
